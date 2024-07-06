@@ -13,6 +13,6 @@ public class Main {
         webDriver.manage().window().setSize(new Dimension(800,600));
         webDriver.get("https://www.google.com/");
         System.out.println("Page title: " + webDriver.getTitle());
-        webDriver.close();
+        webDriver.quit();
     }
 }
