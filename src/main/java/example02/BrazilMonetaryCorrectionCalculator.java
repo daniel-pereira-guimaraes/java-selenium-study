@@ -24,38 +24,35 @@ public class BrazilMonetaryCorrectionCalculator {
             "/following-sibling::td[contains(text(), 'R$')]";
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter .ofPattern("MMyyyy");
     private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
-    private static WebDriver webDriver = null;
+    private WebDriver webDriver;
 
     public BigDecimal correct(YearMonth startDate, YearMonth endDate, BigDecimal principalValue) {
         var startDateKeys = startDate.format(DATE_FORMATTER);
         var endDateKeys = endDate.format(DATE_FORMATTER);
         var principalValueKeys = String.valueOf(principalValue.multiply(HUNDRED).longValue());
+        webDriver = new ChromeDriver();
         try {
-            webDriver = new ChromeDriver();
             webDriver.get(BCB_CALCULATOR_URL);
             inputData(startDateKeys, endDateKeys, principalValueKeys);
             clickButton();
             return getResult();
         } finally {
-            if (webDriver != null) {
-                webDriver.quit();
-                webDriver = null;
-            }
+            webDriver.quit();
         }
     }
 
-    private static void inputData(String startDateString, String endDateString, String principalValueString) {
+    private void inputData(String startDateString, String endDateString, String principalValueString) {
         new Select(webDriver.findElement(By.id(INDEX_SELECT_ID))).selectByVisibleText(INDEX_TEXT);
         webDriver.findElement(By.name(START_DATE_INPUT_NAME)).sendKeys(startDateString);
         webDriver.findElement(By.name(END_DATE_INPUT_NAME)).sendKeys(endDateString);
         webDriver.findElement(By.name(PRINCIPAL_VALUE_INPUT_NAME)).sendKeys(principalValueString);
     }
 
-    private static void clickButton() {
+    private void clickButton() {
         webDriver.findElement(By.className(CORRECT_VALUE_BUTTON_CLASS_NAME)).click();
     }
 
-    private static BigDecimal getResult() {
+    private BigDecimal getResult() {
         var correctedValueCell = webDriver.findElement(By.xpath(CORRECTED_VALUE_CELL_XPATH));
         var correctedValueText = correctedValueCell.getText().replaceAll("[^0-9]", "");
         var correctedValueLong = Long.parseLong(correctedValueText);
