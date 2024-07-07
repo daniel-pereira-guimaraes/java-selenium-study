@@ -33,6 +33,14 @@ public class InteractionWithWindow {
             webDriver.switchTo().window(mainWindowHandler);
             webDriver.findElement(By.id("addText")).click();
 
+            JOptionPane.showMessageDialog(null, "Click OK to close secondary windows");
+            for (var windowHandler : webDriver.getWindowHandles()) {
+                if (!windowHandler.equals(mainWindowHandler)) {
+                    webDriver.switchTo().window(windowHandler);
+                    webDriver.close();
+                }
+            }
+
             JOptionPane.showMessageDialog(null, "Click OK to close all");
         } finally {
             webDriver.quit();
