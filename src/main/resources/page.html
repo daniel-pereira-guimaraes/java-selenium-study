@@ -17,11 +17,18 @@
             p.textContent = text;
             document.body.appendChild(p);
         }
+
+        function addTextClick() {
+            var p = document.createElement('p');
+            p.textContent = "Text added";
+            document.body.appendChild(p);
+        }
     </script>
 </head>
 <body>
     <button id="showAlert" onclick="showAlertClick();">Show alert</button>
     <button id="showPrompt" onclick="showPromptClick();">Show prompt</button>
+    <button id="addText" onclick="addTextClick();">Add text</button>
     <br><br>
     <iframe id="frame1" src="frame.html"></iframe>
 </body>
