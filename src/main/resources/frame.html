@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frame Title</title>
+    <script>
+        function frameButtonClick() {
+            const p = document.createElement('p');
+            p.textContent = "Button clicked!";
+            document.body.appendChild(p);
+        }
+    </script>
+</head>
+<body>
+    <button id="frameButton" onclick="frameButtonClick();">Frame Button</button>
+</body>
+</html>
