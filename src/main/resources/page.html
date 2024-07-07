@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <title>Page Title</title>
     <script>
-        function buttonClick() {
-            console.log('Oi');
+        function showAlertClick() {
             const message = 'Confirm the operation?';
             var p = document.createElement('p');
             p.textContent = confirm(message) ? 'Confirmed!' : 'Canceled!';
             document.body.appendChild(p);
         }
+
+        function showPromptClick() {
+            var text = prompt('Hello', 'Text');
+            var p = document.createElement('p');
+            p.textContent = text;
+            document.body.appendChild(p);
+        }
     </script>
 </head>
 <body>
-    <button id="showAlert" onclick="buttonClick();">Show alert</button>
+<button id="showAlert" onclick="showAlertClick();">Show alert</button>
+<button id="showPrompt" onclick="showPromptClick();">Show prompt</button>
 </body>
 </html>
