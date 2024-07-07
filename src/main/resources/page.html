@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Page Title</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
     <script>
         function showAlertClick() {
             const message = 'Confirm the operation?';
@@ -51,6 +57,34 @@
     <iframe id="frame1" src="frame.html"></iframe>
     <br><br>
     <label for="email">E-mail:</label><input id="email" type="text">
+
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>Emma</td>
+                <td><button onclick="this.textContent='Clicked'">Click here</button></td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>Anna</td>
+                <td><button onclick="this.textContent='Clicked'">Click here</button></td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>Elvis</td>
+                <td><button onclick="this.textContent='Clicked'">Click here</button></td>
+            </tr>
+        </tbody>
+    </table>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <button id="bottomButton" onclick="this.textContent='Clicked'">Bottom Button</button>
