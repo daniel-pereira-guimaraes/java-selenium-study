@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Page Title</title>
-    <button id="showAlert" onclick="alert('Alert message!');">Show alert</button>
+    <script>
+        function buttonClick() {
+            console.log('Oi');
+            const message = 'Confirm the operation?';
+            var p = document.createElement('p');
+            p.textContent = confirm(message) ? 'Confirmed!' : 'Canceled!';
+            document.body.appendChild(p);
+        }
+    </script>
 </head>
 <body>
-
+    <button id="showAlert" onclick="buttonClick();">Show alert</button>
 </body>
 </html>
