@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Duration;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
@@ -32,6 +33,7 @@ public class BrazilMonetaryCorrectionCalculator {
         var principalValueKeys = String.valueOf(principalValue.multiply(HUNDRED).longValue());
         webDriver = new ChromeDriver();
         try {
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             webDriver.get(BCB_CALCULATOR_URL);
             inputData(startDateKeys, endDateKeys, principalValueKeys);
             clickButton();
